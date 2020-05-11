@@ -7,7 +7,7 @@ from djangocrud.api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('/upload', views.upload),
-    path('', views.goHome)
+    path('', views.goHome),
 #    url(r'', views.goHome, name='register'),
 ]
 

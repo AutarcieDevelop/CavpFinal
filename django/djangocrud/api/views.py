@@ -25,22 +25,70 @@ def upload(request):
     return render(request, 'upload.html')
     
 def goHome(request):
+
+    cavp = myDict()
+    ue = myDict()
+    seances = myDict()
+    cours = myDict()
+    coursTemp = myDict()
     tex = myDict()
+    
     cpt = 0
+
     for i in Ue.objects.all():
+        name = "ue" + str(cpt)
         idue = 'idue'+ str(cpt)
+
         nom = 'nom'+ str(cpt)
         quad = 'quadri' + str(cpt)
         nbcred = 'nbcredit' + str(cpt)
+
         tex.add(idue, i.idue)
         tex.add(nom, i.nom)
         tex.add(quad, i.quadri)
         tex.add(nbcred, i.nbcredit)
+
+        ue.add(name, tex)
+
+        cpt += 1
+    cavp.add("ue", ue)
+
+    cpt = 0
+    for i in Seance.objects.all():
+
+        idseance = "idseance"+ str(cpt)
+        heure_d = "heure_debut"+str(cpt)
+        heure_f = "heure_fin"+ str(cpt)
+        local = "local"+str(cpt)
+        groupe = "groupe"+str(cpt)
+        nom = "nom"+str(cpt)
+
+        seances.add(idseance, i.idseance)
+        seances.add(heure_d,i.heure_debut)
+        seances.add(heure_f, i.heure_fin)
+        seances.add(local, i.local)
+        seances.add(groupe, i.groupe)
+        seances.add(nom, i.nom)
+
+        cpt += 1
+    cavp.add("seance", seances)
+
+    cpt = 0
+    for i in Cours.objects.all():
+        nomcours = "numcours" + str(cpt)
+        ue = "ue" + str(cpt)
+        nomcours = "nomcours" + str(cpt)
+
+        coursTemp.add(nomcours, i.numcours)
+        coursTemp.add(ue, i.ue)
+        coursTemp.add(nomcours, i.nomcours)
+
         cpt += 1
 
-    return JsonResponse(tex)
-#    return render(request, './http://localhost:4200', tex)
+    cavp.add("cours", coursTemp)
 
+    return JsonResponse(cavp)
+#    return render(request, './http://localhost:4200', tex)
 class myDict(dict):
 
     def __init__(self):
