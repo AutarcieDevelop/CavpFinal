@@ -47,10 +47,10 @@ def goHome(request):
         tex.add(nom, i.nom)
         tex.add(quad, i.quadri)
         tex.add(nbcred, i.nbcredit)
-
-        ue.add(name, tex)
-
         cpt += 1
+
+    ue.add(name, tex)
+
     cavp.add("ue", ue)
 
     cpt = 0
