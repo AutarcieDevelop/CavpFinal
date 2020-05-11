@@ -1,0 +1,148 @@
+
+.pageCavp{
+  font-size: 1.9rem;
+}
+.quadri {
+  padding: 20px;
+  width: 600px;
+  margin: auto;
+  padding: 0px;
+}
+.composant{
+  border: 2px solid black;
+  padding: 20px;
+  width: 600px;
+  margin: auto;
+  padding: 0px;
+}
+.titre{
+  text-align: center;
+  font-size: 2em;
+}
+.titreUe{
+  text-align: center;
+}
+.entete{
+  border-top: solid;
+  border-bottom: solid;
+  border-color: black;
+  border-width: 1px;
+  padding-bottom: 10px;
+  padding: 10px;
+  background-color: #8A2BE2;
+  color: #eeeeee;
+}
+.ects{
+  display: inline;
+}
+.nomUe{
+  display: inline;
+  margin-left: 14%;
+}
+.totalHeures{
+  display: inline;
+  float: right;
+}
+.ects-{
+  box-sizing: border-box;
+  display: inline;
+  background-color: mediumpurple;
+  position: relative;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.nomUe-{
+  display: inline;
+  text-align: center;
+  position: center;
+}
+.totalHeures-{
+  display: inline;
+  float: right;
+  right: 10px;
+}
+.ligneFin{
+  display: inline;
+}
+.creditQuadri{
+  font-size: 1.5em;
+  color: white;
+  background-color: #8A2BE2;
+  display: inline;
+  border: solid;
+  border-width: 2px;
+  border-color: black;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.heureQuadri{
+  color: white;
+  background-color: #8A2BE2;
+  display: inline;
+  float: right;
+  border-bottom: solid;
+  border-left: solid;
+  border-right: solid;
+  border-width: 2px;
+  border-color: black;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin: 0px;
+}
+.ue{
+  border-bottom: solid 2px;
+  border-top: solid 2px;
+}
+.ueContent{
+  width: 100%;
+  display: inline;
+  border-width: 1px;
+}
+.nomCours{
+  display: inline;
+}
+.heureCours{
+  display: inline;
+  float: right;
+}
+
+#checkboxes input[type=checkbox]:checked + .nomCours{
+  background-color: dodgerblue;
+}
+#checkboxes input[type=checkbox]{
+  display: none;
+}
+.carousel-indicators{
+  background-color: black;
+  float: bottom;
+}
+ol.carousel-indicators{
+  position: fixed;
+  bottom: -0px;
+  margin: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+}
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
+  float: left;
+  width: 10%;
+  height: 10px;
+  margin: 0;
+  border-radius: 0;
+}
+ol.carousel-indicators .active{
+  background-color: #7608ff;
+}
+.left carousel-control{
+  position: absolute;
+}
+.right carousel-control{
+  position: absolute;
+}

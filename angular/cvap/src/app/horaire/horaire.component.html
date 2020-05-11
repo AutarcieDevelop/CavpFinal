@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<button (click)="leclick()"></button>
+<table class="calendar table table-bordered">
+  <thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th width="20%">LUNDI</th>
+    <th width="20%">MARDI</th>
+    <th width="20%">MERCREDI</th>
+    <th width="20%">JEUDI</th>
+    <th width="20%">VENDREDI</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hour of getHour()">
+      <td>{{hour}}h</td>
+      <ng-container *ngFor="let jourSemaine of jourSemaine">
+        <ng-container *ngFor="let seance of getSeance()">
+          <ng-container *ngIf="seance.heureDebut==hour && checkJour(seance)==jourSemaine">
+            <td class="has-events" [attr.rowspan]="countRowspan(seance)">
+              <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+                <span class="title">Cours: {{getCoursFromId(seance.cours).nom}}/</span>
+                <span class="lecturer"><a>Prof: {{getCoursFromId(seance.cours).prof}}/</a></span> <span class="location">Locale: {{seance.local}}</span>
+              </div>
+            </td>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="checkEmptyHour(jourSemaine,hour)==false">
+          <td class=" has-events" rowspan="1"></td>
+        </ng-container>
+      </ng-container>
+  </tr>
+
+  </tbody>
+</table>
+</html>

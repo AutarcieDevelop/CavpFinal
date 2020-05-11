@@ -1,0 +1,17 @@
+
+{% block content %}
+    <h2>Upload</h2>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Entrez l'horaire</label>
+    <form method="POST">
+        <button type="submit" name="goToCavp">Retour vers CAVP</button>
+    </form>
+    <form>
+        <input type="file" name="document" accept=".csv"><br />
+        <label>Entrez l'architecture</label>
+        <input type="file" name="document" accept=".csv"><br />
+    
+        <button type="submit">upload !</button>
+    </form>
+{% endblock %}

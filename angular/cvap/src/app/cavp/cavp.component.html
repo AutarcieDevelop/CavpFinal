@@ -1,0 +1,119 @@
+
+<div class="pageCavp">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+    <!-- Indicators -->
+
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active" ></li>
+      <li data-target="#myCarousel" data-slide-to="1" ></li>
+      <li data-target="#myCarousel" data-slide-to="2" ></li>
+      <li data-target="#myCarousel" data-slide-to="3" ></li>
+      <li data-target="#myCarousel" data-slide-to="4" ></li>
+      <li data-target="#myCarousel" data-slide-to="5" ></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <ng-container *ngFor="let quadri of getQuadri()">
+
+        <div class="item" *ngIf="quadri.id != 1">
+          <div class="quadri">
+            <div class="composant">
+              <div class="titre">Quadrimestre {{quadri.id}}</div>
+              <div class="entete">
+                <div class="ects">ECTS</div>
+                <div class="nomUe">Nom de l'unité d'enseignement</div>
+                <div class="totalHeures">Total des heures</div>
+              </div>
+              <div class="lue" *ngFor="let ue of getUe()">
+                <ng-container *ngIf="ue.quadri==quadri.id">
+                  <div>
+                    <div class="ue">
+                      <div class="ects-">{{ue.nbrCredits}}</div>
+                      <div class="nomUe-">
+                        <strong>{{ue.nom}}</strong>
+                      </div>
+                    </div>
+                    <div class="ueContent">
+                      <div class="totalHeures-">{{totaleHeure(ue.id)}}</div>
+                      <ng-container *ngFor="let cours of getCours()">
+                        <div></div>
+                        <div id="checkboxes" *ngIf="cours.ue==ue.id" >
+                          <input type="checkbox" id="{{cours.id}}" value="" (click)="checkboxClick($event,cours)">
+                          <label  for="{{cours.id}}" class="nomCours">{{ cours.nom }}</label>
+                          <div class="heureCours" (click)="clickCours()">{{cours.nbrHeures}}</div>
+                        </div>
+                        <div></div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="ligneFin">
+              <div class="creditQuadri">30</div>
+              <div class="heureQuadri">{{heureQuadri(quadri.id)}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item active" *ngIf="quadri.id == 1">
+          <div class="quadri">
+            <div class="composant">
+              <div class="titre">Quadrimestre {{quadri.id}}</div>
+              <div class="entete">
+                <div class="ects">ECTS</div>
+                <div class="nomUe">Nom de l'unité d'enseignement</div>
+                <div class="totalHeures">Total des heures</div>
+              </div>
+              <div class="lue" *ngFor="let ue of getUe()">
+                <ng-container *ngIf="ue.quadri==quadri.id">
+                  <div>
+                    <div class="ue">
+                      <div class="ects-">{{ue.nbrCredits}}</div>
+                      <div class="nomUe-">
+                        <strong>{{ue.nom}}</strong>
+                      </div>
+                      <div class="totalHeures-">{{totaleHeure(ue.id)}}</div>
+                    </div>
+                    <div class="ueContent">
+                      <ng-container *ngFor="let cours of getCours()">
+                        <div></div>
+                        <div id="checkboxes" *ngIf="cours.ue==ue.id" >
+                          <input type="checkbox" id="{{cours.id}}" value="" (click)="checkboxClick($event,cours)">
+                          <label  for="{{cours.id}}" class="nomCours">{{ cours.nom }}</label>
+                          <div class="heureCours" (click)="clickCours()">{{cours.nbrHeures}}</div>
+                        </div>
+                        <div></div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="ligneFin">
+              <div class="creditQuadri">30</div>
+              <div class="heureQuadri">{{heureQuadri(quadri.id)}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+  <a class="left carousel-control" href="#myCarousel" style="height: 100%" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div >
+<div class="choixGroupe">
+  <p>Notez ci-dessous le groupe dans lequel vous êtes:</p>
+  <input type="number" min="1" [defaultValue]="1" (keydown)="false" id="groupe">
+</div>
+<button id="test" (click)="test()"></button>
+
