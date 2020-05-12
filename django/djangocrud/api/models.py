@@ -76,7 +76,7 @@ class AuthUserUserPermissions(models.Model):
 class Cours(models.Model):
     numcours = models.IntegerField(primary_key=True)
     matprof = models.ForeignKey('Prof', models.DO_NOTHING, db_column='matprof', blank=True, null=True)
-    heures_total = models.TextField(blank=True, null=True)
+    heures_total = models.IntegerField(blank=True, null=True)
     ue = models.IntegerField(blank=True, null=True)
     nomcours = models.TextField(blank=True, null=True)
     objects = models.Manager()
@@ -164,6 +164,7 @@ class Seance(models.Model):
     local = models.CharField(max_length=15, blank=True, null=True)
     groupe = models.TextField(blank=True, null=True)  # This field type is a guess.
     nom = models.TextField(blank=True, null=True)
+    jour = models.TextField(blank=True, null=True)
     objects = models.Manager()
 
     class Meta:

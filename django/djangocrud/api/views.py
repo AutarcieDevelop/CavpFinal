@@ -29,71 +29,46 @@ def goHome(request):
     cavp = myDict()
     seances = myDict()
     ue = myDict()
-    cours = myDict()
+#    cours = myDict()
     coursTemp = myDict()
     
     cpt = 0
 
-    for i in Ue.objects.all():
-        tex = myDict()
-        name = "ue" + str(cpt)
-        idue = 'idue'+ str(cpt)
+#    for i in Ue.objects.all():
+#        tex = myDict()
+#        name = "ue" + str(cpt)
+#        idue = 'idue'+ str(cpt)
 
-        nom = 'nom'+ str(cpt)
-        quad = 'quadri' + str(cpt)
-        nbcred = 'nbcredit' + str(cpt)
+ #       nom = 'nom'+ str(cpt)
+ #       quad = 'quadri' + str(cpt)
+ #       nbcred = 'nbcredit' + str(cpt)
 
-        tex.add(idue, i.idue)
-        tex.add(nom, i.nom)
-        tex.add(quad, i.quadri)
-        tex.add(nbcred, i.nbcredit)
-        cpt += 1
+ #       tex.add(idue, i.idue)
+ #       tex.add(nom, i.nom)
+ #       tex.add(quad, i.quadri)
+ #       tex.add(nbcred, i.nbcredit)
+ #       cpt += 1
 
-        ue.add(name, tex)
+ #       ue.add(name, tex)
+
+#    cavp.add("ue", ue)
+
+
+    cpt = 0
+    ue = Ue.objects.all().values('idue', 'nom', 'quadri', 'nbcredit')
+    ue = list(ue)
+
+    cours = Cours.objects.all().values('nomcours', 'ue', 'heures_total')
+    cours = list(cours)
+    
+    seances = Seance.objects.all().values('idseance', 'heure_debut', 'heure_fin', 'local', 'nom','jour')
+    seances = list(seances)
 
     cavp.add("ue", ue)
-
-    cpt = 0
-    for i in Seance.objects.all():
-        temp = myDict()
-        seancename = "seance" + str(cpt)
-        idseance = "idseance"+ str(cpt)
-        heure_d = "heure_debut"+str(cpt)
-        heure_f = "heure_fin"+ str(cpt)
-        local = "local"+str(cpt)
-        groupe = "groupe"+str(cpt)
-        nom = "nom"+str(cpt)
-
-        temp.add(idseance, i.idseance)
-        temp.add(heure_d,i.heure_debut)
-        temp.add(heure_f, i.heure_fin)
-        temp.add(local, i.local)
-        temp.add(groupe, i.groupe)
-        temp.add(nom, i.nom)
-
-        seances.add(seancename, temp)
-        cpt += 1
-
     cavp.add("seance", seances)
-
-    cpt = 0
-    for i in Cours.objects.all():
-        temp2 = myDict()
-        nomcrs = "cours" + str(cpt)
-        nomcours = "numcours" + str(cpt)
-        ue = "ue" + str(cpt)
-        nomcours = "nomcours" + str(cpt)
-
-        temp2.add(nomcours, i.numcours)
-        temp2.add(ue, i.ue)
-        temp2.add(nomcours, i.nomcours)
-
-        cours.add(nomcrs, temp2)
-        cpt += 1
-
     cavp.add("cours", cours)
 
-    return JsonResponse(cavp)
+    return JsonResponse(cavp, json_dumps_params={'indent':2}, safe=False)
 #    return render(request, './http://localhost:4200', tex)
 class myDict(dict):
 
