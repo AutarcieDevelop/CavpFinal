@@ -27,15 +27,15 @@ def upload(request):
 def goHome(request):
 
     cavp = myDict()
-    ue = myDict()
     seances = myDict()
+    ue = myDict()
     cours = myDict()
     coursTemp = myDict()
-    tex = myDict()
     
     cpt = 0
 
     for i in Ue.objects.all():
+        tex = myDict()
         name = "ue" + str(cpt)
         idue = 'idue'+ str(cpt)
 
@@ -49,13 +49,14 @@ def goHome(request):
         tex.add(nbcred, i.nbcredit)
         cpt += 1
 
-    ue.add(name, tex)
+        ue.add(name, tex)
 
     cavp.add("ue", ue)
 
     cpt = 0
     for i in Seance.objects.all():
-
+        temp = myDict()
+        seancename = "seance" + str(cpt)
         idseance = "idseance"+ str(cpt)
         heure_d = "heure_debut"+str(cpt)
         heure_f = "heure_fin"+ str(cpt)
@@ -63,29 +64,34 @@ def goHome(request):
         groupe = "groupe"+str(cpt)
         nom = "nom"+str(cpt)
 
-        seances.add(idseance, i.idseance)
-        seances.add(heure_d,i.heure_debut)
-        seances.add(heure_f, i.heure_fin)
-        seances.add(local, i.local)
-        seances.add(groupe, i.groupe)
-        seances.add(nom, i.nom)
+        temp.add(idseance, i.idseance)
+        temp.add(heure_d,i.heure_debut)
+        temp.add(heure_f, i.heure_fin)
+        temp.add(local, i.local)
+        temp.add(groupe, i.groupe)
+        temp.add(nom, i.nom)
 
+        seances.add(seancename, temp)
         cpt += 1
+
     cavp.add("seance", seances)
 
     cpt = 0
     for i in Cours.objects.all():
+        temp2 = myDict()
+        nomcrs = "cours" + str(cpt)
         nomcours = "numcours" + str(cpt)
         ue = "ue" + str(cpt)
         nomcours = "nomcours" + str(cpt)
 
-        coursTemp.add(nomcours, i.numcours)
-        coursTemp.add(ue, i.ue)
-        coursTemp.add(nomcours, i.nomcours)
+        temp2.add(nomcours, i.numcours)
+        temp2.add(ue, i.ue)
+        temp2.add(nomcours, i.nomcours)
 
+        cours.add(nomcrs, temp2)
         cpt += 1
 
-    cavp.add("cours", coursTemp)
+    cavp.add("cours", cours)
 
     return JsonResponse(cavp)
 #    return render(request, './http://localhost:4200', tex)
