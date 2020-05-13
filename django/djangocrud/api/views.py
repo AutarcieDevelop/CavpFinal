@@ -14,11 +14,14 @@ import subprocess
 def upload(request):
     if 'goToCavp' in request.POST:
         return HttpResponseRedirect("http://127.0.0.1:4200")
-#    else:
-        #if request.method == "POST" and request.FILES['document']:
-         #   uploaded_files = request.FILES['document']
-          #  fs = FileSystemStorage()
-           # fs.save(uploaded_files.name, uploaded_files)
+    else:
+        if request.method == "POST" and request.FILES['document'] and request.FILES['document2']:
+            uploaded_file = request.FILES['document']
+            uploaded_file2 = request.FILES['document2']
+            
+            fs = FileSystemStorage()
+            fs.save("horaire.csv", uploaded_file)
+            fs.save("architecture.csv", uploaded_file2)
 
 #        subprocess.Popen(["python3","App/documents/script.py"], close_fds=True)
 
@@ -30,7 +33,6 @@ def goHome(request):
     seances = myDict()
     ue = myDict()
 #    cours = myDict()
-    coursTemp = myDict()
     
     cpt = 0
 
